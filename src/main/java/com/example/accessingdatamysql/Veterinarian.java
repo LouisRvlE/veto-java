@@ -42,8 +42,9 @@ public class Veterinarian {
         this.name = name;
     }
 
-    public List<Appointment> getAppointments() {
-        return this.appointments;
+    public List<Long> getAppointments() {
+        return this.appointments.stream().map(Appointment::getId).toList();
+        // return this.appointments;
     }
 
 }

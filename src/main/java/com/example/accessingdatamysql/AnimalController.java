@@ -91,7 +91,7 @@ public class AnimalController {
 		return "Updated";
 	}
 
-	@GetMapping(path = "/list")
+	@GetMapping(path = "")
 	public @ResponseBody Iterable<Animal> getAllAnimal() {
 		// This returns a JSON or XML with the animal
 		return animalRepository.findAll();

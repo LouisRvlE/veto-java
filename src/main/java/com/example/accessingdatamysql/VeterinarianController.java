@@ -52,7 +52,7 @@ public class VeterinarianController {
 		return "Updated";
 	}
 
-	@GetMapping(path = "/list")
+	@GetMapping(path = "")
 	public @ResponseBody Iterable<Veterinarian> getAllVeterinarian() {
 		// This returns a JSON or XML with the animal
 		return veterinarianRepository.findAll();

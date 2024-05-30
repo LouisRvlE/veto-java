@@ -50,4 +50,8 @@ public class Report {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void setAppointment(Appointment appointment) {
+        this.appointment = appointment;
+    }
 }

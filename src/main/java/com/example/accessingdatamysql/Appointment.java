@@ -44,24 +44,37 @@ public class Appointment {
         this.date = date;
     }
 
-    public Report getReport() {
-        return this.report;
+    public long getReport() {
+        if (this.report == null) {
+            return -1;
+        }
+        return this.report.getId();
     }
 
     public void setReport(Report report) {
         this.report = report;
     }
 
-    public Animal getAnimal() {
-        return this.animal;
+    public void clearReport() {
+        this.report = null;
+    }
+
+    public long getAnimal() {
+        if (this.animal == null) {
+            return -1;
+        }
+        return this.animal.getId();
     }
 
     public void setAnimal(Animal animal) {
         this.animal = animal;
     }
 
-    public Veterinarian getVeterinarian() {
-        return this.veterinarian;
+    public long getVeterinarian() {
+        if (this.veterinarian == null) {
+            return -1;
+        }
+        return this.veterinarian.getId();
     }
 
     public void setVeterinarian(Veterinarian veterinarian) {
