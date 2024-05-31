@@ -1,5 +1,8 @@
 # Projet Veto
 
+https://github.com/LouisRvlE/veto-java
+https://github.com/LouisRvlE/veto-front
+
 ### Configurer le projet
 
 Dans applications.properties, modifier les variables à sa convenance.
