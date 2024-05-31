@@ -22,18 +22,18 @@ public class AppointmentController {
     private VeterinarianRepository veterinarianRepository;
 
     @PostMapping(path = "/add") // Map ONLY POST Requests
-    public @ResponseBody String addNewAppointment(@RequestParam Number date, @RequestParam Long animalId,
-            @RequestParam Long veterinarianId) {
+    public @ResponseBody String addNewAppointment(@RequestParam String date, @RequestParam Long animal,
+            @RequestParam Long veterinarian) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        Animal animal = animalRepository.findById(animalId).get();
-        Veterinarian veterinarian = veterinarianRepository.findById(veterinarianId).get();
+        Animal animalObj = animalRepository.findById(animal).get();
+        Veterinarian veterinarianObj = veterinarianRepository.findById(veterinarian).get();
 
         Appointment newAppointment = new Appointment();
-        newAppointment.setDate(date.intValue());
-        newAppointment.setAnimal(animal);
-        newAppointment.setVeterinarian(veterinarian);
+        newAppointment.setDate(date);
+        newAppointment.setAnimal(animalObj);
+        newAppointment.setVeterinarian(veterinarianObj);
         appointmentRepository.save(newAppointment);
         return "Saved";
     }
@@ -51,29 +51,29 @@ public class AppointmentController {
     }
 
     @GetMapping(path = "/{appointmentId}")
-    public @ResponseBody Appointment getAppointment(@PathVariable("AppointmentId") long appointmentId) {
+    public @ResponseBody Appointment getAppointment(@PathVariable("appointmentId") long appointmentId) {
         return appointmentRepository.findById(appointmentId).get();
     }
 
     @PostMapping(path = "/{appointmentId}/update") // Map ONLY POST Requests
     public @ResponseBody String updateAppointment(@PathVariable("appointmentId") long appointmentId,
-            @RequestParam(required = false) Number date, @RequestParam(required = false) Long animalId,
-            @RequestParam(required = false) Long veterinarianId) {
+            @RequestParam(required = false) String date, @RequestParam(required = false) Long animal,
+            @RequestParam(required = false) Long veterinarian) {
 
         Appointment appointment = appointmentRepository.findById(appointmentId).get();
 
         if (date != null) {
-            appointment.setDate(date.intValue());
+            appointment.setDate(date);
         }
 
-        if (animalId != null) {
-            Animal animal = animalRepository.findById(animalId).get();
-            appointment.setAnimal(animal);
+        if (animal != null) {
+            Animal animalObj = animalRepository.findById(animal).get();
+            appointment.setAnimal(animalObj);
         }
 
-        if (veterinarianId != null) {
-            Veterinarian veterinarian = veterinarianRepository.findById(veterinarianId).get();
-            appointment.setVeterinarian(veterinarian);
+        if (veterinarian != null) {
+            Veterinarian veterinarianObj = veterinarianRepository.findById(veterinarian).get();
+            appointment.setVeterinarian(veterinarianObj);
         }
 
         appointmentRepository.save(appointment);

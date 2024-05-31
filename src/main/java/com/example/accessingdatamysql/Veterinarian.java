@@ -44,7 +44,6 @@ public class Veterinarian {
 
     public List<Long> getAppointments() {
         return this.appointments.stream().map(Appointment::getId).toList();
-        // return this.appointments;
     }
 
 }

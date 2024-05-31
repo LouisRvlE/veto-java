@@ -1,5 +1,6 @@
 package com.example.accessingdatamysql;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -13,8 +14,8 @@ public class Client {
     private long id;
 
     private String name;
-    
-    @OneToMany(mappedBy = "client")
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.REMOVE)
     private List<Animal> animals;
 
     public Client() {
@@ -32,20 +33,22 @@ public class Client {
     public long getId() {
         return id;
     }
+
     public void setId(long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    // ! Il met tout les setter, mettre getAnimals fait une stackoverflow (json infinite recursion)
-    // public List<Animal> getAnimals() {
-    //     return animals;
-    // } 
+    public List<Long> getAnimals() {
+        return this.animals.stream().map(Animal::getId).toList();
+    }
 
     public void setAnimals(List<Animal> animals) {
         this.animals = animals;

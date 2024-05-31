@@ -21,13 +21,13 @@ public class ReportController {
 
 	@PostMapping(path = "/add") // Map ONLY POST Requests
 	public @ResponseBody String addNewAnimal(@RequestParam String name,
-			@RequestParam String description, @RequestParam Long appointmentId) {
+			@RequestParam String description, @RequestParam Long appointment) {
 		Report newReport = new Report();
 		newReport.setName(name);
 		newReport.setDescription(description);
 
-		Appointment appointment = appointmentRepository.findById(appointmentId).get();
-		newReport.setAppointment(appointment);
+		Appointment appointmentObj = appointmentRepository.findById(appointment).get();
+		newReport.setAppointment(appointmentObj);
 		// appointment.setReport(newReport);
 		// appointmentRepository.save(appointment);
 		reportRepository.save(newReport);

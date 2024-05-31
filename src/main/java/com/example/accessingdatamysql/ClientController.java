@@ -38,7 +38,6 @@ public class ClientController {
 
     @DeleteMapping(path = "/{clientId}/delete")
     public @ResponseBody String deleteClient(@PathVariable("clientId") long clientId) {
-        // Client client = clientRepository.findById(clientId).get();
         clientRepository.deleteById(clientId);
         return "Deleted";
     }

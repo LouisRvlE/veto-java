@@ -7,25 +7,22 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 
-// peutêtre change de nom
-// pour un truc en anglais
-
 @Entity // This tells Hibernate to make a table out of this class
 public class Appointment {
     @Id
     @GeneratedValue
     private long id;
-    private Number date;
+    private String date;
 
     @OneToOne(mappedBy = "appointment")
     private Report report;
 
     @ManyToOne
-    @JoinColumn(name="animal_id", nullable=false)
+    @JoinColumn(name = "animal_id", nullable = false)
     private Animal animal;
 
-    @ManyToOne 
-    @JoinColumn(name="veterinarian_id", nullable=false)
+    @ManyToOne
+    @JoinColumn(name = "veterinarian_id", nullable = false)
     private Veterinarian veterinarian;
 
     public long getId() {
@@ -36,11 +33,11 @@ public class Appointment {
         this.id = id;
     }
 
-    public Number getDate() {
+    public String getDate() {
         return this.date;
     }
 
-    public void setDate(Number date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

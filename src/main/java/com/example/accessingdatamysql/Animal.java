@@ -1,5 +1,6 @@
 package com.example.accessingdatamysql;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -17,13 +18,13 @@ public class Animal {
     private String name;
     private Number age;
     private String sexe;
-    
+
     @ManyToOne
-    @JoinColumn(name="client_id", nullable=false)
+    @JoinColumn(name = "client_id", nullable = false)
     private Client client;
     // il faudra ici marquer "private Client client;" quand client sera créé
-    
-    @OneToMany(mappedBy="animal")
+
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.REMOVE)
     private List<Appointment> appointments;
 
     private String note;
@@ -74,8 +75,11 @@ public class Animal {
         this.sexe = sexe;
     }
 
-    public Client getClient() {
-        return client;
+    public long getClient() {
+        if (this.client == null) {
+            return -1;
+        }
+        return client.getId();
     }
 
     public void setClient(Client client) {
@@ -96,5 +100,9 @@ public class Animal {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public List<Long> getAppointments() {
+        return appointments.stream().map(Appointment::getId).toList();
     }
 }

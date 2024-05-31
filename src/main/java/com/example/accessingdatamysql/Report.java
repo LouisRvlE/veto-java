@@ -13,7 +13,7 @@ public class Report {
     private long id;
     private String name;
     private String description;
-    
+
     @OneToOne
     @JoinColumn(name = "appointment_id")
     private Appointment appointment;
@@ -53,5 +53,12 @@ public class Report {
 
     public void setAppointment(Appointment appointment) {
         this.appointment = appointment;
+    }
+
+    public long getAppointment() {
+        if (this.appointment == null) {
+            return -1;
+        }
+        return this.appointment.getId();
     }
 }
