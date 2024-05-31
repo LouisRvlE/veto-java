@@ -43,6 +43,35 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+					<id>resources</id>
+					<phase>prepare-package</phase>
+					<goals>
+						<goal>resources</goal>
+					</goals>
+					<configuration>
+						<resources>
+						<resource>
+							<directory>build/</directory>
+							<targetPath>static</targetPath>
+							<includes>
+							<include>**/*</include>
+							</includes>
+						</resource>
+						<resource>
+							<directory>src/main/resources/</directory>
+							<includes>
+							<include>**/*</include>
+							</includes>
+						</resource>
+						</resources>
+					</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
